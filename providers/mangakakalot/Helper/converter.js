@@ -41,6 +41,7 @@ async function pre(mangaName, chapterName, files) {    // a temporary function t
         doc.on('end', () => {
             console.log("PDF Saved Successfully");
             rmAsync(`./images/${mangaName}/${chapterName}/`, { recursive: true });
+            rmAsync(`./images/${mangaName}/`, { recursive: true });
             console.log("Images deleted successfully!");
             resolve();
         });

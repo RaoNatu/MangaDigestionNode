@@ -7,7 +7,7 @@ const util = require('util');
 
 PATH = ''
 
-function createFolder(path) {
+async function createFolder(path) {
     fs.mkdir(path, (err) => {
         if(err) {
             console.log("Error creating folder: ", err);
@@ -22,8 +22,8 @@ async function downloader(allChapterImagesURL, mangaName, chapterName) {
     // Creating folder for a particular manga
     chapterName = chapterName.replace(/[:\/\\|<>?*"]/g, '');
     PATH = `./images/${mangaName}/${chapterName}/`;
-    createFolder(`./images/${mangaName}`);
-    createFolder(`./images/${mangaName}/${chapterName}`);
+    await createFolder(`./images/${mangaName}`);
+    await createFolder(`./images/${mangaName}/${chapterName}`);
 
     for(const imageURL of allChapterImagesURL) {
         await mangakakalotDownloader(imageURL);
