@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include('layouts/header') -%>
+<body>
+
+  <!-- ======= Header ======= -->
+  <%- include('layouts/navbar') -%>
+  <!-- End Header -->
+
+  <main id="main">
+
+    <!-- ======= Breadcrumbs ======= -->
+    <div class="breadcrumbs d-flex align-items-center" style="background-image: url('/assets/img/anime-carousel/4.jpg');">
+      <div class="container position-relative d-flex flex-column align-items-center" data-aos="fade">
+
+        <h2>Results</h2>
+        <ol>
+          <li><a href="/">Home</a></li>
+          <li>Results</li>
+        </ol>
+
+      </div>
+    </div><!-- End Breadcrumbs -->
+
+    <!-- ======= Blog Section ======= -->
+    <section id="blog" class="blog">
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+        <div class="row gy-4 posts-list">
+
+          <% for(let i = 0; i < mangaList.length; i ++)  {%>
+          <div class="col-xl-4 col-md-6">
+            <div class="post-item position-relative h-100">
+
+              <div class="post-img position-relative overflow-hidden">
+                <img src="<%= mangaList[i].imageUrl %>" class="img-fluid" alt="">
+                <span class="post-date"><%= mangaList[i].updatedDate.split(' ')[0] %></span>
+              </div>
+
+              <div class="post-content d-flex flex-column">
+
+                <h3 class="post-title"><%= mangaList[i].name %></h3>
+
+                <div class="meta d-flex align-items-center">
+                  <div class="d-flex align-items-center">
+                    <i class="bi bi-person"></i> <span class="ps-2"><%= mangaList[i].authors %></span>
+                  </div>
+                </div>
+
+                <hr>
+
+                <a href="/chapters/<%= mangaList[i].URL.split('/').pop() %>" class="readmore stretched-link"><span>Proceed</span><i class="bi bi-arrow-right"></i></a>
+
+              </div>
+
+            </div>
+          </div><!-- End post list item -->
+          <% } %>
+        </div><!-- End blog posts list -->
+
+        <div class="blog-pagination">
+          <ul class="justify-content-center">
+            
+            <li><a href="/results?mangaName=<%= mangaName %>&page=<%= 1 %>"><<</a></li>
+            <li><a href="/results?mangaName=<%= mangaName %>&page=<%= parseInt(pageNumber) - 1 %>"><</a></li>
+
+            <% let start = 0 %> 
+              <% let active = "active"; %>
+              <% if (pageNumber == 1 || pageNumber == 2 || pageNumber == 3) { %>
+                <% start = 1 %>
+              <% } else if (pageNumber == pageCount) { %>
+                <% start = pageNumber - 4 %>
+              <% } else if (pageNumber == pageCount - 1) { %>
+                <% start = pageNumber - 3 %>
+              <% } else { %>
+                <% start = pageNumber - 2 %>
+              <% } %>
+
+              <% for(let i = 0; i < 5; i ++) { %>
+                <% if (start + i <= pageCount) { %>
+                  <li class="<% if (pageNumber == start + i) { %> active <% } %>"><a href="/results?mangaName=<%= mangaName %>&page=<%= start + i %>"><%= start + i %></a></li>
+                <% } %>
+              <% } %>
+              <li><a href="/results?mangaName=<%= mangaName %>&page=<%= parseInt(pageNumber) + 1 %>">></a></li>
+              <li><a href="/results?mangaName=<%= mangaName %>&page=<%= pageCount %>">>></a></li>
+          </ul>
+        </div><!-- End blog pagination -->
+
+      </div>
+    </section><!-- End Blog Section -->
+
+  </main><!-- End #main -->
+
+  <%- include('layouts/scripts') -%>
+
+</body>
+
+</html>

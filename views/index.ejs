@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include('layouts/header') -%>
+<body>
+
+  <%- include('layouts/navbar') -%>
+
+  <!-- ======= Hero Section ======= -->
+  <section id="hero" class="hero">
+
+    <div class="info d-flex align-items-center">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-6 text-center">
+            <h2 data-aos="fade-down">Welcome to <span>MangaDigestion</span></h2>
+            <p data-aos="fade-up">An open source tool to download manga from your favourite provider!</p>
+            <a data-aos="fade-up" data-aos-delay="200" href="#providers" class="btn-get-started">Get Started</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="hero-carousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="5000">
+
+      <div class="carousel-item active" style="background-image: url(assets/img/anime-carousel/1.jpg)"></div>
+      <div class="carousel-item" style="background-image: url(assets/img/anime-carousel/2.jpg)"></div>
+      <div class="carousel-item" style="background-image: url(assets/img/anime-carousel/3.jpg)"></div>
+      <div class="carousel-item" style="background-image: url(assets/img/anime-carousel/4.jpg)"></div>
+      <div class="carousel-item" style="background-image: url(assets/img/anime-carousel/5.jpg)"></div>
+
+      <a class="carousel-control-prev" href="#hero-carousel" role="button" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon bi bi-chevron-left" aria-hidden="true"></span>
+      </a>
+
+      <a class="carousel-control-next" href="#hero-carousel" role="button" data-bs-slide="next">
+        <span class="carousel-control-next-icon bi bi-chevron-right" aria-hidden="true"></span>
+      </a>
+
+    </div>
+
+  </section><!-- End Hero Section -->
+
+  <main id="main">
+
+    <!-- ======= Services Section ======= -->
+    <section id="providers" class="services section-bg">
+      <div class="container" data-aos="fade-up">
+
+        <div class="section-header">
+          <h2>Manga Providers</h2>
+          <p>MangaDigestion allows you to download mangas from different websites!</p>
+        </div>
+
+        <div class="row gy-4">
+
+          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+            <div class="service-item  position-relative">
+              <div class="icon">
+                <i class="fa-solid fa-book"></i>
+              </div>
+              <h3>Mangakakalot</h3>
+              <p>There are many reasons you should read Manga online, and if you are a fan of this unique storytelling style then learning about them is a must. </p>
+              <a href="https://mangakakalot.com" target="_blank" class="readmore stretched-link">Learn more <i class="bi bi-arrow-right"></i></a>
+            </div>
+          </div><!-- End Service Item -->
+
+      </div>
+    </section><!-- End Services Section -->
+
+    <!-- ======= Get Started Section ======= -->
+    <section id="search" class="get-started section-bg">
+      <div class="container">
+
+        <div class="row justify-content-between gy-4">
+
+          <div class="col-lg-6 d-flex align-items-center" data-aos="fade-up">
+            <div class="content">
+              <h3>Search</h3>
+              <p>MangaDigestion allows you to download your favourite mangas!</p>
+            </div>
+          </div>
+
+          <div class="col-lg-5" data-aos="fade">
+            <form action="/results" method="POST" class="search-manga">
+              <div class="row gy-3">
+                <div class="col-md-12">
+                  <input type="text" name="name" class="form-control" placeholder="eg. 'Grand Blue'" required>
+                </div>
+                <button type="submit">Search Manga</button>
+              </div>
+            </form>
+          </div><!-- End Quote Form -->
+
+        </div>
+
+      </div>
+    </section><!-- End Get Started Section -->
+  </main><!-- End #main -->
+
+  <a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <div id="preloader"></div>
+
+  <%- include('layouts/scripts') -%>
+
+</body>
+
+</html>

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('layouts/header') -%>
+<body>
+
+  <%- include('layouts/navbar') -%>
+
+  <main id="main">
+
+    <!-- ======= Breadcrumbs ======= -->
+    <div class="breadcrumbs d-flex align-items-center" style="background-image: url('/assets/img/anime-carousel/1.jpg');">
+      <div class="container position-relative d-flex flex-column align-items-center" data-aos="fade">
+
+        <h2>Chapters</h2>
+        <ol>
+          <li><a href="/">Home</a></li>
+          <li>Chapters</li>
+        </ol>
+
+      </div>
+    </div><!-- End Breadcrumbs -->
+
+    <!-- ======= About Section ======= -->
+    <section id="about" class="about">
+      <div class="container" data-aos="fade-up">
+
+        <div class="row position-relative">
+
+          <div class="col-lg-4 about-img" style="background-image: url('<%= mangaInfo.coverURL %>');"></div>
+
+          <div class="col-lg-7">
+            <div class="our-story">
+              <h3><%= mangaInfo.mangaName %></h3>
+              <p><%= mangaInfo.description %></p>
+              <ul>
+                <li><span><strong>Alternative(s): </strong><%= mangaInfo.alterName %></span></li>
+                <li><span><strong>Author(s): </strong><%= mangaInfo.author %></span></li>
+                <li><span><strong>Genre(s): </strong><%= mangaInfo.genre %></span></li>
+              </ul>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+    <!-- End About Section -->
+
+    <!-- ======= Alt Services Section ======= -->
+    <section id="alt-services" class="alt-services">
+      <div class="container" data-aos="fade-up">
+
+        <div class="row justify-content-around gy-4">
+
+          <div class="col-lg-5 d-flex flex-column justify-content-center">
+            <h3>Chapters</h3>
+
+            <% for(let i of chapterInfo)  { %>
+            <div class="icon-box d-flex position-relative" data-aos="fade-up" data-aos-delay="300">
+              <i class="bi bi bi-book  flex-shrink-0"></i>
+              <div>
+                <h4><a href="/getchapinfo?url=<%= i.chapURL %>&mangaName=<%= mangaInfo.mangaName %>&chapName=<%= i.chapName %>" class="stretched-link"><%= i.chapName %></a></h4>
+              </div>
+            </div><!-- End Icon Box -->
+            <% } %>
+
+          </div>
+        </div>
+
+        <section id="blog" class="blog">
+          <div class="blog-pagination">
+            <ul class="justify-content-center">
+              <li><a href="/chapters/<%= url %>?page=1#alt-services"><<</a></li>
+              <li><a href="/chapters/<%= url %>?page=<%= parseInt(pageNumber - 1) %>#alt-services"><</a></li>
+
+              <% let start = 0 %> 
+              <% let active = "active"; %>
+              <% if (pageNumber == 1 || pageNumber == 2 || pageNumber == 3) { %>
+                <% start = 1 %>
+              <% } else if (pageNumber == pageCount) { %>
+                <% start = pageNumber - 4 %>
+              <% } else if (pageNumber == pageCount - 1) { %>
+                <% start = pageNumber - 3 %>
+              <% } else { %>
+                <% start = pageNumber - 2 %>
+              <% } %>
+
+              <% for(let i = 0; i < 5; i ++) { %>
+                <% if (start + i <= pageCount) { %>
+                  <li class="<% if (pageNumber == start + i) { %> active <% } %>"><a href="/chapters/<%= url %>?page=<%= start + i %>#alt-services"><%= start + i %></a></li>
+                <% } %>
+              <% } %>
+              <li><a href="/chapters/<%= url %>?page=<%= parseInt(pageNumber) + 1 %>#alt-services">></a></li>
+              <li><a href="/chapters/<%= url %>?page=<%= pageCount %>#alt-services">>></a></li>
+            </ul>
+          </div><!-- End blog pagination -->
+        </section><!-- End Blog Section -->
+    </section><!-- End Alt Services Section -->
+
+
+  <%- include('layouts/scripts') -%>
+
+</body>
+
+</html>
+
