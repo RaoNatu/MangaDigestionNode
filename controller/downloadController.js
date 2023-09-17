@@ -1,5 +1,6 @@
 const { downloader } = require('../providers/mangakakalot/Helper/downloader')
 const { convertSingle } = require('../providers/mangakakalot/Helper/converter')
+const { delPDF } = require('../providers/mangakakalot/Helper/deleter')
 const path = require('path')
 const mimetype = require('mime')
 const fs = require('fs')
@@ -19,4 +20,8 @@ module.exports = async (req, res) => {
     const pdfFilePath = path.resolve(__dirname, `../pdfs/${mangaName}/${chapName}.pdf`)
     const fileStream = fs.createReadStream(pdfFilePath)
     fileStream.pipe(res);
+    console.log("File Sent!")
+
+    delPDF(mangaName, chapName)
+
 }
